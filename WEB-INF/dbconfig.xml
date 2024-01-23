@@ -17,8 +17,8 @@
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
 		<!-- <property name="url" value="jdbc:mysql://umj7-021.cafe24.com/tlsdudwns98"></property> -->
 		<property name="url" value="jdbc:mysql://localhost:3306/tlsdudwns98"></property>
-		<property name="username" value="tlsdudwns98"></property>
-		<property name="password" value="shinweb98!"></property>
+		<property name="username" value=""></property>
+		<property name="password" value=""></property>
 		</bean>
 		
 		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
