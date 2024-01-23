@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias alias="admin" type="aaa.siteinfo_dto"/>
+		<typeAlias alias="notice" type="aaa.notice_dto"/>
+		<typeAlias alias="product" type="aaa.aircode_dto"/>	
+		<typeAlias alias="airplane" type="aaa.airplane_dto"/>
+		<typeAlias alias="seat" type="aaa.seat_dto"/>
+		<typeAlias alias="faq" type="aaa.faq_dto"/>
+		<typeAlias alias="user" type="aaa.airuser_dto"/>
+	</typeAliases>
+</configuration>

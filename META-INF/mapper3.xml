@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="seatdao">
+
+	<insert id="insert_seat" parameterType="String">
+		insert into seat values ('0',#{pidx}, #{start_date},#{end_date},#{rprice},now());	
+	</insert>
+	
+	<insert id="insert_seat2" parameterType="Map">
+		insert into seat values ('0',#{pidx}, #{start_date},#{end_date},#{rprice},now());	
+	</insert>
+	
+	<select id="count_pidx" parameterType="String" resultType="seat">
+		select * from seat
+	</select>
+	
+	<update id="update_resok">
+		update air_plane set resok = 'Y' where pidx = #{pidx}
+	</update>
+	
+	
+	<select id="select_user" parameterType="String" resultType="user">
+		select * from air_user order by uidx desc
+	</select>
+	
+	<select id="search_user" parameterType="Map" resultType="user">
+		select * from air_user 
+		<where>
+			<if test="part == 1">
+				uname like concat('%',#{search},'%')
+			</if>
+			<if test="part==2">
+				utel like concat('%',#{search},'%')
+			</if>
+		</where>
+		order by uidx desc
+	</select>
+	
+	<delete id="delete_user" parameterType="String">
+		delete from air_user where uidx = #{uidx}
+	</delete>
+	
+	
+	<insert id="insert_faq" parameterType="String">
+		insert into faq values ('0',#{fsubject},#{fid},#{fname},#{fcontent},now())
+	</insert>
+	
+	<select id="count_faq" parameterType="String" resultType="Integer">
+		select count(*) as ctn from faq
+	</select>
+	
+	<select id="count_faq_search" parameterType="String" resultType="Integer">
+		select count(*) as ctn from faq where fsubject like concat('%',#{search},'%') or fcontent like concat('%',#{search},'%')
+	</select>
+	
+	<select id="select_faq" parameterType="Map" resultType="faq">
+		select * from faq order by fidx desc limit #{no},10
+	</select>
+	
+	<select id="faq_search" parameterType="Map" resultType="faq">
+		select * from faq
+	<where>
+		fsubject like concat('%',#{search},'%') or fcontent like concat('%',#{search},'%')
+	</where>
+		order by fidx desc limit ${no},10
+	</select>
+
+	<delete id="faq_delete" parameterType="String">
+		delete from faq where fidx = #{fidx}
+	</delete>
+	
+	<select id="view_faq" parameterType="String" resultType="faq">
+		select * from faq where fidx = #{fidx}
+	</select>
+	
+	<update id="update_faq">
+		update faq set fsubject = #{fsubject}, fname = #{fname}, fcontent = #{fcontent} where fidx = #{fidx}
+	</update>
+
+</mapper>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="product">
+
+<update id="update_code">
+update air_code set airplane=#{airplane}, airname=#{airname}, aircode=#{aircode}, airflight=#{airflight}, airuse=#{airuse} where airidx=#{airidx};
+</update>
+
+<select id="modifycode_view" parameterType="String" resultType="product">
+	select * from air_code where airidx = #{airidx}
+</select>
+
+<insert id="insert_product" parameterType="String">
+insert into air_code values ('0',#{airplane},#{airname},#{aircode},#{airflight},#{airuse},now())
+</insert>
+
+<select id="productck" parameterType="Map" resultType="product">
+			select * from air_code
+		<if test="part=='2'">
+			<where>
+				airname = #{ck}
+			</where>
+		</if>
+		<if test="part=='3'">
+			<where>
+				aircode = #{ck}
+			</where>
+		</if>
+</select>
+
+<select id="product_code" parameterType="Map" resultType="product">
+	select * from air_code
+	<if test="part == 1">
+	 group by airplane
+	</if>
+</select>
+
+<select id="find_code" parameterType="String" resultType="product">
+select aircode,airuse from air_code where airname = #{airname};
+</select>
+
+<select id="find_airname" parameterType="String" resultType="product">
+select airname,airuse from air_code where airplane = #{airplane};
+</select>
+
+<select id="find_flight" parameterType="String" resultType="product">
+select airflight from air_code where aircode = #{aircode};
+</select>
+
+<insert id="insert_airplane" parameterType="String">
+insert into air_plane values ('0',#{airplane_code},#{airname},#{aircode},#{air_flight},#{start_point},#{end_point},#{seat},#{seat_ea},#{air_use},'N',now())
+</insert>
+
+<select id="product_list" parameterType="String" resultType="airplane">
+	select * from air_plane order by pidx desc
+</select>
+
+<select id="product_search" parameterType="Map" resultType="airplane">
+select * from air_plane
+	<where>
+		<if test="part == 1">
+			airname like concat('%',#{search},'%')
+		</if>
+		<if test="part == 2">
+			aircode like concat('%',#{search},'%')
+		</if>
+		<if test="part == 3">
+			start_point like concat('%',#{search},'%') and resok = 'N'
+		</if>
+		<if test="part == 4">
+			end_point like concat('%',#{search},'%') and resok = 'N'
+		</if>
+		<if test="part == 5">
+			resok = 'N'
+		</if>		
+	</where>
+		order by pidx desc
+</select>
+
+<select id="resok" parameterType="String" resultType="airplane">
+	select * from air_plane as a join seat as s where a.resok = 'Y' and a.pidx = s.pidx
+</select>
+
+<select id="code_search" parameterType="Map" resultType="product">
+select * from air_code
+	<where>
+		<if test="part == 1">
+			airname like concat('%',#{search},'%')
+		</if>
+		<if test="part == 2">
+			aircode like concat('%',#{search},'%')
+		</if>
+	</where>
+		order by airidx desc
+</select>
+
+<delete id="delete_product" parameterType="String">
+delete from air_plane where pidx = #{pdix}
+</delete>
+
+<delete id="delete_airlist" parameterType="String">
+delete from air_code where airidx = #{airdix}
+</delete>
+
+</mapper>

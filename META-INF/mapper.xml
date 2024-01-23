@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin"> 
+
+<update id="update_siteinfo">
+update info set isubject = #{isubject}, iemail = #{iemail}, ipoint_use = #{ipoint_use}, ijoin_point = #{ijoin_point}, ilevel = #{ilevel}, icompany = #{icompany} , icode = #{icode} , iname = #{iname} , itel = #{itel} , ireport_num = #{ireport_num}, icom_code = #{icom_code} , ipost = #{ipost} , iaddr = #{iaddr} , imanager_name = #{imanager_name} , imanager_email = #{imanager_email} , ibank = #{ibank} , ibank_num = #{ibank_num} , icard_use = #{icard_use} , ihp_use = #{ihp_use} , ivou_use = #{ivou_use} , imin_point = #{imin_point}, imax_point = #{imax_point} , icash = #{icash}
+</update>
+
+<select id="select_info" parameterType="String" resultType="admin">
+select * from info where idx='23'
+</select>
+
+<insert id="insert_notice" parameterType="String">
+insert into admin_notice values ('0',#{nprint},#{nsubject},#{nid},#{nname},#{nfile},#{ncontent},now(),0)
+</insert>
+
+<update id="notice_count">
+update admin_notice set ncount = ncount+1 where nidx = #{nidx}  
+</update>
+
+<select id="select_notice" parameterType="String" resultType="notice">
+select * from admin_notice order by nidx desc
+</select>
+
+<select id="notice_select" parameterType="String" resultType="notice">
+select * from admin_notice where nidx = #{nidx}
+</select>
+
+<delete id="delete_notice" parameterType="String">
+delete from admin_notice where nidx = #{nidx}
+</delete>
+
+<update id="update_notice">
+update admin_notice set nprint = #{nprint} , nsubject = #{nsubject} , nfile = #{nfile} , ncontent = #{ncontent} where nidx = #{nidx}
+</update>
+
+<update id="update_check">
+	update admin_notice set
+	<if test="part=='ok'">
+		nprint = 'N' where nidx = #{nidx}
+	</if>
+	<if test="part=='no'">
+		nprint = 'Y' where nidx = #{nidx}
+	</if>
+</update>
+
+</mapper>
