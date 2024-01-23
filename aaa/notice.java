@@ -90,7 +90,7 @@ public class notice {
 	    else {
 		    try {
 		       String filename = nfile.getOriginalFilename();
-		       String host = "iup.cdn1.cafe24.com";
+		       String host = "";
 		       String user = "";
 		       String pass = "";
 		       int port = 21;
