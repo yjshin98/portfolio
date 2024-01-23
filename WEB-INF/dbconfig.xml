@@ -15,8 +15,8 @@
 
 		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-		<!-- <property name="url" value="jdbc:mysql://umj7-021.cafe24.com/tlsdudwns98"></property> -->
-		<property name="url" value="jdbc:mysql://localhost:3306/tlsdudwns98"></property>
+		<!-- <property name="url" value="jdbc:mysql://"></property> -->
+		<property name="url" value="jdbc:mysql://localhost:3306/"></property>
 		<property name="username" value=""></property>
 		<property name="password" value=""></property>
 		</bean>
