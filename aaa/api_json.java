@@ -36,7 +36,7 @@ public class api_json {
 			
 			JSONArray ja = new JSONArray();
 			while(this.rs.next()) {
-				JSONObject jo = new JSONObject(); // 부속키 생성
+				JSONObject jo = new JSONObject();
 				jo.put("aidx", this.rs.getString("aidx"));
 				jo.put("aid", this.rs.getString("aid"));
 				jo.put("aname", this.rs.getString("aname"));
@@ -46,9 +46,9 @@ public class api_json {
 				jo.put("apost", this.rs.getString("apost"));
 				jo.put("aroval", this.rs.getString("aroval"));
 				jo.put("adate", this.rs.getString("adate"));
-				ja.add(jo); // 1차 배열로 그룹
+				ja.add(jo);
 			}
-			JSONObject jo2 = new JSONObject(); // 대표 키 생성
+			JSONObject jo2 = new JSONObject();
 			jo2.put("admin", ja); 
 			this.result = jo2.toJSONString();
 		
