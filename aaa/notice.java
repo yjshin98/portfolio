@@ -91,8 +91,8 @@ public class notice {
 		    try {
 		       String filename = nfile.getOriginalFilename();
 		       String host = "iup.cdn1.cafe24.com";
-		       String user = "tlsdudwns98";
-		       String pass = "shinweb98!";
+		       String user = "";
+		       String pass = "";
 		       int port = 21;
 		       ftp.configure(cf);
 		       ftp.connect(host,port);   
